@@ -1,5 +1,7 @@
 # cpuQueue — 동적 Time Quantum MLFQ와 Per-CPU Runqueue 비교 연구
 
+> 저장소 이름: DynamicQuantumMLFQSimulator · 프로젝트 이름: cpuQueue — 동적 Time Quantum MLFQ와 Per-CPU Runqueue 비교 연구
+
 두 가지 질문을 **시뮬레이터로 직접 측정**한 프로젝트입니다.
 
 1. MLFQ의 queue별 time quantum을 workload와 queue state에 따라 동적으로 조절하면 평균 대기시간 · 응답시간 · context switch · starvation 사이의 trade-off가 어떻게 변하는가?
