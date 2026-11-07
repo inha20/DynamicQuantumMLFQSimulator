@@ -2,12 +2,26 @@
 
 > 저장소 이름: DynamicQuantumMLFQSimulator · 프로젝트 이름: cpuQueue — 동적 Time Quantum MLFQ와 Per-CPU Runqueue 비교 연구
 
+> **연구 상태 안내(2026-11-08):** 시뮬레이터와 결과는 그대로 두고, 그 위에 연구 상태 문서를 AI(Claude)가 초안으로 더하는 중이다. 초안이며 사람의 검토 전이다. 이 README의 결과는 가설을 미리 적어 두지 않고 얻은 **탐색적 결과**이고, 이 저장소는 새롭다는 주장을 하지 않는다. 진행 기록은 [docs/00-progress-log.md](docs/00-progress-log.md).
+
 두 가지 질문을 **시뮬레이터로 직접 측정**한 프로젝트입니다.
 
 1. MLFQ의 queue별 time quantum을 workload와 queue state에 따라 동적으로 조절하면 평균 대기시간 · 응답시간 · context switch · starvation 사이의 trade-off가 어떻게 변하는가?
 2. 이를 멀티코어의 per-CPU runqueue + CPU affinity + load balancing에 적용하면 단일 전역 MLFQ 대비 어떤 성능 차이가 나는가?
 
 순수 Python(표준 라이브러리만, 그래프는 matplotlib 선택)으로 틱 단위 스케줄러 시뮬레이터를 만들고, seed 10개 평균으로 6개 실험을 돌렸습니다. 전체 표는 [results/summary.md](results/summary.md), 해석은 [docs/analysis.md](docs/analysis.md)에 있습니다.
+
+## 현재 상태 (2026-11-08)
+
+| 단계 | 상태 |
+|---|---|
+| 시뮬레이터, 실험 E1–E6, 결과 | 있음(탐색적 결과). 2026-11-08에 처음부터 다시 돌려 결과 CSV 6개가 저장본과 바이트까지 같음을 확인했다 |
+| 측정 도구 검증(불변식, 손계산 사례, 재현 점검, 신뢰구간) | 진행 중 |
+| 선행연구 위치 잡기(G4) | 진행 중 |
+| 주장 대장과 문서-결과 수치 대조 | 진행 중 |
+| 질문형 연구 질문과 사전 분석 계획(G5 초안) | 예정. 확인용 실행과 새 정책 구현은 계획을 동결(사람의 승인)하기 전에는 하지 않는다 |
+
+단계별 기록과 막힌 점은 [docs/00-progress-log.md](docs/00-progress-log.md)에 있다.
 
 ## 실행
 
@@ -25,6 +39,7 @@ python experiments.py                  # 전체 실험 (약 1~2분) -> results/
 | `mlfqsim/workload.py` | interactive / batch / mixed / bursty / starve workload 생성기 |
 | `experiments.py` | E1~E6 실험 + 그래프 |
 | `results/` | CSV, `summary.md`, PNG |
+| `docs/00-progress-log.md` | 진행 기록(AI 초안) |
 
 ## 모델링한 정책
 
