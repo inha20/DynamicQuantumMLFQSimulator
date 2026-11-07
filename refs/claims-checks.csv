@@ -1,0 +1,287 @@
+check_id,kind,file,filter,filter_b,column,order,claimed,tol,doc,snippet
+C-E1T-01,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=1,,switch_per_kt,,152.8,0.05,README.md,| context switch / 1000tick | 152.8 | 105.5 | 93.5 | 86.2 |
+C-E1T-02,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=4,,switch_per_kt,,105.5,0.05,README.md,| context switch / 1000tick | 152.8 | 105.5 | 93.5 | 86.2 |
+C-E1T-03,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=16,,switch_per_kt,,93.5,0.05,README.md,| context switch / 1000tick | 152.8 | 105.5 | 93.5 | 86.2 |
+C-E1T-04,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,,switch_per_kt,,86.2,0.05,README.md,| context switch / 1000tick | 152.8 | 105.5 | 93.5 | 86.2 |
+C-E1T-05,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=1,,int_lat_p95,,5.4,0.05,README.md,| interactive 지연 p95 | 5.4 | 3.8 | 7.6 | 100.0 |
+C-E1T-06,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=4,,int_lat_p95,,3.8,0.05,README.md,| interactive 지연 p95 | 5.4 | 3.8 | 7.6 | 100.0 |
+C-E1T-07,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=16,,int_lat_p95,,7.6,0.05,README.md,| interactive 지연 p95 | 5.4 | 3.8 | 7.6 | 100.0 |
+C-E1T-08,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,,int_lat_p95,,100.0,0.05,README.md,| interactive 지연 p95 | 5.4 | 3.8 | 7.6 | 100.0 |
+C-E1T-09,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=1,,avg_wait,,1972,0.5,README.md,| 평균 대기 | 1972 | 1798 | 1759 | 2078 |
+C-E1T-10,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=4,,avg_wait,,1798,0.5,README.md,| 평균 대기 | 1972 | 1798 | 1759 | 2078 |
+C-E1T-11,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=16,,avg_wait,,1759,0.5,README.md,| 평균 대기 | 1972 | 1798 | 1759 | 2078 |
+C-E1T-12,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,,avg_wait,,2078,0.5,README.md,| 평균 대기 | 1972 | 1798 | 1759 | 2078 |
+C-E1T-13,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=1,,max_wait,,265,0.5,README.md,| 최대 대기(`max_wait`) | 265 | 697 | 860 | 762 |
+C-E1T-14,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=4,,max_wait,,697,0.5,README.md,| 최대 대기(`max_wait`) | 265 | 697 | 860 | 762 |
+C-E1T-15,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=16,,max_wait,,860,0.5,README.md,| 최대 대기(`max_wait`) | 265 | 697 | 860 | 762 |
+C-E1T-16,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,,max_wait,,762,0.5,README.md,| 최대 대기(`max_wait`) | 265 | 697 | 860 | 762 |
+C-E1B-01,series,results/e1_static_quantum_sweep.csv,workload=mixed;base_q<=16,,avg_wait,base_q,dec,,README.md,q=1과 q=64에서 나빠지고 q≈4~16이 최적
+C-E1B-02,series,results/e1_static_quantum_sweep.csv,workload=mixed;base_q>=16,,avg_wait,base_q,inc,,README.md,q=1과 q=64에서 나빠지고 q≈4~16이 최적
+C-E1B-03,gt,results/e1_static_quantum_sweep.csv,workload=mixed;base_q>=32,workload=mixed;base_q>=4;base_q<=16,avg_wait,,,,README.md,q=1과 q=64에서 나빠지고 q≈4~16이 최적
+C-E1B-04,gt,results/e1_static_quantum_sweep.csv,workload=mixed;base_q<=2,workload=mixed;base_q>=4;base_q<=16,avg_wait,,,,README.md,q=1과 q=64에서 나빠지고 q≈4~16이 최적
+C-E1B-05,series,results/e1_static_quantum_sweep.csv,workload=mixed,,switch_per_kt,base_q,dec,,README.md,q가 커질수록 switch는 줄고(152.8 → 86.2)
+C-E1B-06,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=1,,switch_per_kt,,152.8,0.05,README.md,q가 커질수록 switch는 줄고(152.8 → 86.2)
+C-E1B-07,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,,switch_per_kt,,86.2,0.05,README.md,q가 커질수록 switch는 줄고(152.8 → 86.2)
+C-E1B-08,series,results/e1_static_quantum_sweep.csv,workload=mixed;base_q>=4,,int_lat_p95,base_q,inc,,README.md,q≥4에서는 interactive 지연이 급증(p95 3.8 → 100)
+C-E1B-09,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=4,,int_lat_p95,,3.8,0.05,README.md,q≥4에서는 interactive 지연이 급증(p95 3.8 → 100)
+C-E1B-10,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,,int_lat_p95,,100,0.05,README.md,q≥4에서는 interactive 지연이 급증(p95 3.8 → 100)
+C-E1B-11,ratio,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,workload=mixed;base_q=4,int_lat_p95,,>=10,,README.md,q≥4에서는 interactive 지연이 급증(p95 3.8 → 100)
+C-E1B-12,series,results/e1_static_quantum_sweep.csv,workload=mixed;base_q<=16,,max_wait,base_q,inc,,README.md,q=1에서 16까지는 q가 클수록 **길어지고**(265 → 860)
+C-E1B-13,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=1,,max_wait,,265,0.5,README.md,q=1에서 16까지는 q가 클수록 **길어지고**(265 → 860)
+C-E1B-14,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=16,,max_wait,,860,0.5,README.md,q=1에서 16까지는 q가 클수록 **길어지고**(265 → 860)
+C-E1B-15,series,results/e1_static_quantum_sweep.csv,workload=mixed;base_q>=16,,max_wait,base_q,dec,,README.md,"q=32, 64에서는 다시 짧아집니다(795, 762)"
+C-E1B-16,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=32,,max_wait,,795,0.5,README.md,"q=32, 64에서는 다시 짧아집니다(795, 762)"
+C-E1B-17,value,results/e1_static_quantum_sweep.csv,workload=mixed;base_q=64,,max_wait,,762,0.5,README.md,"q=32, 64에서는 다시 짧아집니다(795, 762)"
+C-E2F-01,value,results/e2_dynamic_policies.csv,workload=mixed;policy=static,,avg_wait,,1798,0.5,README.md,"(mixed 1798→1780, batch -2.8%, bursty -0.8%)"
+C-E2F-02,value,results/e2_dynamic_policies.csv,workload=mixed;policy=feedback,,avg_wait,,1780,0.5,README.md,"(mixed 1798→1780, batch -2.8%, bursty -0.8%)"
+C-E2F-03,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=feedback,avg_wait,,-2.8,0.05,README.md,"(mixed 1798→1780, batch -2.8%, bursty -0.8%)"
+C-E2F-04,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=feedback,avg_wait,,-0.8,0.05,README.md,"(mixed 1798→1780, batch -2.8%, bursty -0.8%)"
+C-E2F-05,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=feedback,avg_wait,,+2.5,0.05,README.md,"(interactive +2.5%, starve +2.3%)"
+C-E2F-06,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=feedback,avg_wait,,+2.3,0.05,README.md,"(interactive +2.5%, starve +2.3%)"
+C-E2F-07,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=feedback,avg_resp,,<0,,README.md,응답은 5개 workload 모두 줄었습니다
+C-E2F-08,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=feedback,avg_resp,,<0,,README.md,응답은 5개 workload 모두 줄었습니다
+C-E2F-09,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=feedback,avg_resp,,<0,,README.md,응답은 5개 workload 모두 줄었습니다
+C-E2F-10,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=feedback,avg_resp,,<0,,README.md,응답은 5개 workload 모두 줄었습니다
+C-E2F-11,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=feedback,avg_resp,,<0,,README.md,응답은 5개 workload 모두 줄었습니다
+C-E2F-12,value,results/e2_dynamic_policies.csv,workload=mixed;policy=static,,avg_resp,,0.9,0.05,README.md,(mixed 0.9→0.5)
+C-E2F-13,value,results/e2_dynamic_policies.csv,workload=mixed;policy=feedback,,avg_resp,,0.5,0.05,README.md,(mixed 0.9→0.5)
+C-E2F-14,value,results/e2_dynamic_policies.csv,workload=batch;policy=static,,switch_per_kt,,65.4,0.05,README.md,switch 65.4→56.8/kt
+C-E2F-15,value,results/e2_dynamic_policies.csv,workload=batch;policy=feedback,,switch_per_kt,,56.8,0.05,README.md,switch 65.4→56.8/kt
+C-E2F-16,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=feedback,int_lat_p95,,>0,,README.md,interactive p95 지연은 5개 workload 모두 늘었습니다(mixed 3.8→4.7)
+C-E2F-17,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=feedback,int_lat_p95,,>0,,README.md,interactive p95 지연은 5개 workload 모두 늘었습니다(mixed 3.8→4.7)
+C-E2F-18,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=feedback,int_lat_p95,,>0,,README.md,interactive p95 지연은 5개 workload 모두 늘었습니다(mixed 3.8→4.7)
+C-E2F-19,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=feedback,int_lat_p95,,>0,,README.md,interactive p95 지연은 5개 workload 모두 늘었습니다(mixed 3.8→4.7)
+C-E2F-20,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=feedback,int_lat_p95,,>0,,README.md,interactive p95 지연은 5개 workload 모두 늘었습니다(mixed 3.8→4.7)
+C-E2F-21,value,results/e2_dynamic_policies.csv,workload=mixed;policy=static,,int_lat_p95,,3.8,0.05,README.md,interactive p95 지연은 5개 workload 모두 늘었습니다(mixed 3.8→4.7)
+C-E2F-22,value,results/e2_dynamic_policies.csv,workload=mixed;policy=feedback,,int_lat_p95,,4.7,0.05,README.md,interactive p95 지연은 5개 workload 모두 늘었습니다(mixed 3.8→4.7)
+C-E2L-01,value,results/e2_dynamic_policies.csv,workload=mixed;policy=static,,switch_per_kt,,105.5,0.05,README.md,"mixed switch 105.5→125.7/kt, batch switch 65.4→110.8/kt"
+C-E2L-02,value,results/e2_dynamic_policies.csv,workload=mixed;policy=load,,switch_per_kt,,125.7,0.05,README.md,"mixed switch 105.5→125.7/kt, batch switch 65.4→110.8/kt"
+C-E2L-03,value,results/e2_dynamic_policies.csv,workload=batch;policy=static,,switch_per_kt,,65.4,0.05,README.md,"mixed switch 105.5→125.7/kt, batch switch 65.4→110.8/kt"
+C-E2L-04,value,results/e2_dynamic_policies.csv,workload=batch;policy=load,,switch_per_kt,,110.8,0.05,README.md,"mixed switch 105.5→125.7/kt, batch switch 65.4→110.8/kt"
+C-E2L-05,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=load,avg_wait,,+2.6,0.05,README.md,"평균 대기는 workload에 따라 +2.6%(bursty)~+16.5%(interactive)이고(mixed +6.4%, batch +6.7%)"
+C-E2L-06,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=load,avg_wait,,+16.5,0.05,README.md,"평균 대기는 workload에 따라 +2.6%(bursty)~+16.5%(interactive)이고(mixed +6.4%, batch +6.7%)"
+C-E2L-07,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=load,avg_wait,,+6.4,0.05,README.md,"평균 대기는 workload에 따라 +2.6%(bursty)~+16.5%(interactive)이고(mixed +6.4%, batch +6.7%)"
+C-E2L-08,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=load,avg_wait,,+6.7,0.05,README.md,"평균 대기는 workload에 따라 +2.6%(bursty)~+16.5%(interactive)이고(mixed +6.4%, batch +6.7%)"
+C-E2L-09,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=load,avg_wait,,2.6..16.5,,README.md,"평균 대기는 workload에 따라 +2.6%(bursty)~+16.5%(interactive)이고(mixed +6.4%, batch +6.7%)"
+C-E2L-10,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=load,int_lat_p95,,>0,,README.md,interactive p95는 5개 workload 모두 늘었습니다(mixed 3.8→7.0)
+C-E2L-11,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=load,int_lat_p95,,>0,,README.md,interactive p95는 5개 workload 모두 늘었습니다(mixed 3.8→7.0)
+C-E2L-12,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=load,int_lat_p95,,>0,,README.md,interactive p95는 5개 workload 모두 늘었습니다(mixed 3.8→7.0)
+C-E2L-13,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=load,int_lat_p95,,>0,,README.md,interactive p95는 5개 workload 모두 늘었습니다(mixed 3.8→7.0)
+C-E2L-14,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=load,int_lat_p95,,>0,,README.md,interactive p95는 5개 workload 모두 늘었습니다(mixed 3.8→7.0)
+C-E2L-15,value,results/e2_dynamic_policies.csv,workload=mixed;policy=static,,int_lat_p95,,3.8,0.05,README.md,interactive p95는 5개 workload 모두 늘었습니다(mixed 3.8→7.0)
+C-E2L-16,value,results/e2_dynamic_policies.csv,workload=mixed;policy=load,,int_lat_p95,,7.0,0.05,README.md,interactive p95는 5개 workload 모두 늘었습니다(mixed 3.8→7.0)
+C-E2L-17,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=load,avg_resp,,<0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-18,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=load,avg_resp,,<0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-19,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=load,avg_resp,,<0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-20,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=load,avg_resp,,<0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-21,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=load,avg_resp,,<0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-22,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=load,starved,,<0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-23,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=load,switch_per_kt,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-24,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=load,switch_per_kt,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-25,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=load,switch_per_kt,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-26,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=load,switch_per_kt,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-27,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=load,switch_per_kt,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-28,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=load,avg_wait,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-29,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=load,avg_wait,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-30,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=load,avg_wait,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-31,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=load,avg_wait,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-32,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=load,avg_wait,,>0,,README.md,"응답시간·starvation을 개선하는 대신 평균 대기, switch, interactive p95 지연이 악화"
+C-E2L-33,value,results/e2_dynamic_policies.csv,workload=starve;policy=static,,avg_resp,,11.9,0.05,README.md,"`starve` workload에서 응답 11.9→1.4, starved task 2.4→0"
+C-E2L-34,value,results/e2_dynamic_policies.csv,workload=starve;policy=load,,avg_resp,,1.4,0.05,README.md,"`starve` workload에서 응답 11.9→1.4, starved task 2.4→0"
+C-E2L-35,value,results/e2_dynamic_policies.csv,workload=starve;policy=static,,starved,,2.4,0.05,README.md,"`starve` workload에서 응답 11.9→1.4, starved task 2.4→0"
+C-E2L-36,value,results/e2_dynamic_policies.csv,workload=starve;policy=load,,starved,,0,0.05,README.md,"`starve` workload에서 응답 11.9→1.4, starved task 2.4→0"
+C-E2L-37,max,results/e2_dynamic_policies.csv,workload!=starve,,starved,,0,0,README.md,"`starve` workload에서 응답 11.9→1.4, starved task 2.4→0"
+C-E2H-01,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=hybrid,max_wait,,<0,,README.md,`max_wait`를 5개 workload 모두에서 낮추지만(starve 1004→193)
+C-E2H-02,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=hybrid,max_wait,,<0,,README.md,`max_wait`를 5개 workload 모두에서 낮추지만(starve 1004→193)
+C-E2H-03,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=hybrid,max_wait,,<0,,README.md,`max_wait`를 5개 workload 모두에서 낮추지만(starve 1004→193)
+C-E2H-04,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=hybrid,max_wait,,<0,,README.md,`max_wait`를 5개 workload 모두에서 낮추지만(starve 1004→193)
+C-E2H-05,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=hybrid,max_wait,,<0,,README.md,`max_wait`를 5개 workload 모두에서 낮추지만(starve 1004→193)
+C-E2H-06,value,results/e2_dynamic_policies.csv,workload=starve;policy=static,,max_wait,,1004,0.5,README.md,`max_wait`를 5개 workload 모두에서 낮추지만(starve 1004→193)
+C-E2H-07,value,results/e2_dynamic_policies.csv,workload=starve;policy=hybrid,,max_wait,,193,0.5,README.md,`max_wait`를 5개 workload 모두에서 낮추지만(starve 1004→193)
+C-E2H-08,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=hybrid,avg_wait,,+8.7,0.05,README.md,"(batch +8.7%, starve +28.0%, bursty +29.8%, mixed +42.9%, interactive +73.4%)"
+C-E2H-09,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=hybrid,avg_wait,,+28.0,0.05,README.md,"(batch +8.7%, starve +28.0%, bursty +29.8%, mixed +42.9%, interactive +73.4%)"
+C-E2H-10,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=hybrid,avg_wait,,+29.8,0.05,README.md,"(batch +8.7%, starve +28.0%, bursty +29.8%, mixed +42.9%, interactive +73.4%)"
+C-E2H-11,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=hybrid,avg_wait,,+42.9,0.05,README.md,"(batch +8.7%, starve +28.0%, bursty +29.8%, mixed +42.9%, interactive +73.4%)"
+C-E2H-12,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=hybrid,avg_wait,,+73.4,0.05,README.md,"(batch +8.7%, starve +28.0%, bursty +29.8%, mixed +42.9%, interactive +73.4%)"
+C-E2H-13,rel,results/e2_dynamic_policies.csv,workload=interactive;policy=static,workload=interactive;policy=hybrid,int_lat_p95,,>0,,README.md,interactive p95 지연이 5개 workload 모두 늘고
+C-E2H-14,rel,results/e2_dynamic_policies.csv,workload=mixed;policy=static,workload=mixed;policy=hybrid,int_lat_p95,,>0,,README.md,interactive p95 지연이 5개 workload 모두 늘고
+C-E2H-15,rel,results/e2_dynamic_policies.csv,workload=batch;policy=static,workload=batch;policy=hybrid,int_lat_p95,,>0,,README.md,interactive p95 지연이 5개 workload 모두 늘고
+C-E2H-16,rel,results/e2_dynamic_policies.csv,workload=bursty;policy=static,workload=bursty;policy=hybrid,int_lat_p95,,>0,,README.md,interactive p95 지연이 5개 workload 모두 늘고
+C-E2H-17,rel,results/e2_dynamic_policies.csv,workload=starve;policy=static,workload=starve;policy=hybrid,int_lat_p95,,>0,,README.md,interactive p95 지연이 5개 workload 모두 늘고
+C-E2H-18,ratio,results/e2_dynamic_policies.csv,workload=mixed;policy=hybrid,workload=mixed;policy=static,int_lat_p95,,>=10,,README.md,mixed와 batch에서는 크게 악화
+C-E2H-19,ratio,results/e2_dynamic_policies.csv,workload=batch;policy=hybrid,workload=batch;policy=static,int_lat_p95,,>=10,,README.md,mixed와 batch에서는 크게 악화
+C-E2H-20,value,results/e2_dynamic_policies.csv,workload=mixed;policy=static,,int_lat_p95,,3.8,0.05,README.md,"(mixed 3.8→103, batch 1.5→127)"
+C-E2H-21,value,results/e2_dynamic_policies.csv,workload=mixed;policy=hybrid,,int_lat_p95,,103,0.5,README.md,"(mixed 3.8→103, batch 1.5→127)"
+C-E2H-22,value,results/e2_dynamic_policies.csv,workload=batch;policy=static,,int_lat_p95,,1.5,0.05,README.md,"(mixed 3.8→103, batch 1.5→127)"
+C-E2H-23,value,results/e2_dynamic_policies.csv,workload=batch;policy=hybrid,,int_lat_p95,,127,0.5,README.md,"(mixed 3.8→103, batch 1.5→127)"
+C-E3-01,value,results/e3_starvation_boost.csv,policy=static;boost=0,,max_wait,,6849,0.5,README.md,최대 대기(`max_wait`)가 6849틱
+C-E3-02,value,results/e3_starvation_boost.csv,policy=static;boost=1000,,max_wait,,1004,0.5,README.md,"(P=1000에서 1004, P=100에서 110)"
+C-E3-03,value,results/e3_starvation_boost.csv,policy=static;boost=100,,max_wait,,110,0.5,README.md,"(P=1000에서 1004, P=100에서 110)"
+C-E3-04,value,results/e3_starvation_boost.csv,policy=static;boost=100,,max_wait,,>100,,README.md,P가 1000 이하이면 P를 약간 넘고
+C-E3-05,value,results/e3_starvation_boost.csv,policy=static;boost=200,,max_wait,,>200,,README.md,P가 1000 이하이면 P를 약간 넘고
+C-E3-06,value,results/e3_starvation_boost.csv,policy=static;boost=500,,max_wait,,>500,,README.md,P가 1000 이하이면 P를 약간 넘고
+C-E3-07,value,results/e3_starvation_boost.csv,policy=static;boost=1000,,max_wait,,>1000,,README.md,P가 1000 이하이면 P를 약간 넘고
+C-E3-08,colrel,results/e3_starvation_boost.csv,policy=static;boost=100,,max_wait/boost,,-5..10,,README.md,정적 정책에 boost 주기 P를 두면 `max_wait`는 P 근처로 묶입니다
+C-E3-09,colrel,results/e3_starvation_boost.csv,policy=static;boost=200,,max_wait/boost,,-5..10,,README.md,정적 정책에 boost 주기 P를 두면 `max_wait`는 P 근처로 묶입니다
+C-E3-10,colrel,results/e3_starvation_boost.csv,policy=static;boost=500,,max_wait/boost,,-5..10,,README.md,정적 정책에 boost 주기 P를 두면 `max_wait`는 P 근처로 묶입니다
+C-E3-11,colrel,results/e3_starvation_boost.csv,policy=static;boost=1000,,max_wait/boost,,-5..10,,README.md,정적 정책에 boost 주기 P를 두면 `max_wait`는 P 근처로 묶입니다
+C-E3-12,colrel,results/e3_starvation_boost.csv,policy=static;boost=2000,,max_wait/boost,,-5..10,,README.md,정적 정책에 boost 주기 P를 두면 `max_wait`는 P 근처로 묶입니다
+C-E3-13,colrel,results/e3_starvation_boost.csv,policy=static;boost=5000,,max_wait/boost,,-5..10,,README.md,정적 정책에 boost 주기 P를 두면 `max_wait`는 P 근처로 묶입니다
+C-E3-14,value,results/e3_starvation_boost.csv,policy=static;boost=2000,,max_wait,,1999.7,0.05,README.md,"P=2000에서는 1999.7, P=5000에서는 4850입니다"
+C-E3-15,value,results/e3_starvation_boost.csv,policy=static;boost=5000,,max_wait,,4850,0.5,README.md,"P=2000에서는 1999.7, P=5000에서는 4850입니다"
+C-E3-16,rel,results/e3_starvation_boost.csv,policy=static;boost=0,policy=static;boost=100,avg_wait,,+18,0.5,README.md,P=100이면 평균 대기 +18%(5381→6343)
+C-E3-17,value,results/e3_starvation_boost.csv,policy=static;boost=0,,avg_wait,,5381,0.5,README.md,P=100이면 평균 대기 +18%(5381→6343)
+C-E3-18,value,results/e3_starvation_boost.csv,policy=static;boost=100,,avg_wait,,6343,0.5,README.md,P=100이면 평균 대기 +18%(5381→6343)
+C-E3-19,rel,results/e3_starvation_boost.csv,policy=static;boost=0,policy=static;boost=100,int_lat_p95,,+42,0.5,README.md,interactive p95 +42%(30→43)
+C-E3-20,value,results/e3_starvation_boost.csv,policy=static;boost=0,,int_lat_p95,,30,0.5,README.md,interactive p95 +42%(30→43)
+C-E3-21,value,results/e3_starvation_boost.csv,policy=static;boost=100,,int_lat_p95,,43,0.5,README.md,interactive p95 +42%(30→43)
+C-E3-22,rel,results/e3_starvation_boost.csv,policy=static;boost=0,policy=static;boost=100,switch_per_kt,,+9,0.5,README.md,switch +9%
+C-E3-23,value,results/e3_starvation_boost.csv,policy=hybrid;boost=0,,max_wait,,90,0.5,README.md,`max_wait`가 90틱으로 억제
+C-E3-24,rel,results/e3_starvation_boost.csv,policy=static;boost=0,policy=hybrid;boost=0,avg_wait,,+24,0.5,README.md,정적·boost 없음 대비 +24%(5381→6669)
+C-E3-25,value,results/e3_starvation_boost.csv,policy=static;boost=0,,avg_wait,,5381,0.5,README.md,정적·boost 없음 대비 +24%(5381→6669)
+C-E3-26,value,results/e3_starvation_boost.csv,policy=hybrid;boost=0,,avg_wait,,6669,0.5,README.md,정적·boost 없음 대비 +24%(5381→6669)
+C-E4T-01,value,results/e4_multicore_scaling.csv,ncpu=2;workload=mixed;config=global,,avg_wait,,2840,0.5,README.md,| 2 | 2840 | 2139 | 0.7 | 0.8 | 787 | 66 |
+C-E4T-02,value,results/e4_multicore_scaling.csv,"ncpu=2;workload=mixed;config=percpu(soft,lb100)",,avg_wait,,2139,0.5,README.md,| 2 | 2840 | 2139 | 0.7 | 0.8 | 787 | 66 |
+C-E4T-03,value,results/e4_multicore_scaling.csv,ncpu=2;workload=mixed;config=global,,util,,0.7,0.05,README.md,| 2 | 2840 | 2139 | 0.7 | 0.8 | 787 | 66 |
+C-E4T-04,value,results/e4_multicore_scaling.csv,"ncpu=2;workload=mixed;config=percpu(soft,lb100)",,util,,0.8,0.05,README.md,| 2 | 2840 | 2139 | 0.7 | 0.8 | 787 | 66 |
+C-E4T-05,value,results/e4_multicore_scaling.csv,ncpu=2;workload=mixed;config=global,,migrations,,787,0.5,README.md,| 2 | 2840 | 2139 | 0.7 | 0.8 | 787 | 66 |
+C-E4T-06,value,results/e4_multicore_scaling.csv,"ncpu=2;workload=mixed;config=percpu(soft,lb100)",,migrations,,66,0.5,README.md,| 2 | 2840 | 2139 | 0.7 | 0.8 | 787 | 66 |
+C-E4T-07,value,results/e4_multicore_scaling.csv,ncpu=4;workload=mixed;config=global,,avg_wait,,3459,0.5,README.md,| 4 | 3459 | 2194 | 0.6 | 0.8 | 2403 | 216 |
+C-E4T-08,value,results/e4_multicore_scaling.csv,"ncpu=4;workload=mixed;config=percpu(soft,lb100)",,avg_wait,,2194,0.5,README.md,| 4 | 3459 | 2194 | 0.6 | 0.8 | 2403 | 216 |
+C-E4T-09,value,results/e4_multicore_scaling.csv,ncpu=4;workload=mixed;config=global,,util,,0.6,0.05,README.md,| 4 | 3459 | 2194 | 0.6 | 0.8 | 2403 | 216 |
+C-E4T-10,value,results/e4_multicore_scaling.csv,"ncpu=4;workload=mixed;config=percpu(soft,lb100)",,util,,0.8,0.05,README.md,| 4 | 3459 | 2194 | 0.6 | 0.8 | 2403 | 216 |
+C-E4T-11,value,results/e4_multicore_scaling.csv,ncpu=4;workload=mixed;config=global,,migrations,,2403,0.5,README.md,| 4 | 3459 | 2194 | 0.6 | 0.8 | 2403 | 216 |
+C-E4T-12,value,results/e4_multicore_scaling.csv,"ncpu=4;workload=mixed;config=percpu(soft,lb100)",,migrations,,216,0.5,README.md,| 4 | 3459 | 2194 | 0.6 | 0.8 | 2403 | 216 |
+C-E4T-13,value,results/e4_multicore_scaling.csv,ncpu=8;workload=mixed;config=global,,avg_wait,,4028,0.5,README.md,| 8 | 4028 | 2168 | 0.6 | 0.8 | 5544 | 616 |
+C-E4T-14,value,results/e4_multicore_scaling.csv,"ncpu=8;workload=mixed;config=percpu(soft,lb100)",,avg_wait,,2168,0.5,README.md,| 8 | 4028 | 2168 | 0.6 | 0.8 | 5544 | 616 |
+C-E4T-15,value,results/e4_multicore_scaling.csv,ncpu=8;workload=mixed;config=global,,util,,0.6,0.05,README.md,| 8 | 4028 | 2168 | 0.6 | 0.8 | 5544 | 616 |
+C-E4T-16,value,results/e4_multicore_scaling.csv,"ncpu=8;workload=mixed;config=percpu(soft,lb100)",,util,,0.8,0.05,README.md,| 8 | 4028 | 2168 | 0.6 | 0.8 | 5544 | 616 |
+C-E4T-17,value,results/e4_multicore_scaling.csv,ncpu=8;workload=mixed;config=global,,migrations,,5544,0.5,README.md,| 8 | 4028 | 2168 | 0.6 | 0.8 | 5544 | 616 |
+C-E4T-18,value,results/e4_multicore_scaling.csv,"ncpu=8;workload=mixed;config=percpu(soft,lb100)",,migrations,,616,0.5,README.md,| 8 | 4028 | 2168 | 0.6 | 0.8 | 5544 | 616 |
+C-E4T-19,value,results/e4_multicore_scaling.csv,ncpu=16;workload=mixed;config=global,,avg_wait,,5725,0.5,README.md,| 16 | 5725 | 2157 | 0.4 | 0.8 | 13302 | 1469 |
+C-E4T-20,value,results/e4_multicore_scaling.csv,"ncpu=16;workload=mixed;config=percpu(soft,lb100)",,avg_wait,,2157,0.5,README.md,| 16 | 5725 | 2157 | 0.4 | 0.8 | 13302 | 1469 |
+C-E4T-21,value,results/e4_multicore_scaling.csv,ncpu=16;workload=mixed;config=global,,util,,0.4,0.05,README.md,| 16 | 5725 | 2157 | 0.4 | 0.8 | 13302 | 1469 |
+C-E4T-22,value,results/e4_multicore_scaling.csv,"ncpu=16;workload=mixed;config=percpu(soft,lb100)",,util,,0.8,0.05,README.md,| 16 | 5725 | 2157 | 0.4 | 0.8 | 13302 | 1469 |
+C-E4T-23,value,results/e4_multicore_scaling.csv,ncpu=16;workload=mixed;config=global,,migrations,,13302,0.5,README.md,| 16 | 5725 | 2157 | 0.4 | 0.8 | 13302 | 1469 |
+C-E4T-24,value,results/e4_multicore_scaling.csv,"ncpu=16;workload=mixed;config=percpu(soft,lb100)",,migrations,,1469,0.5,README.md,| 16 | 5725 | 2157 | 0.4 | 0.8 | 13302 | 1469 |
+C-E4B-01,series,results/e4_multicore_scaling.csv,workload=mixed;config=global,,avg_wait,ncpu,inc,,README.md,global은 코어가 늘수록 평균 대기가 악화(2840→5725)
+C-E4B-02,value,results/e4_multicore_scaling.csv,ncpu=2;workload=mixed;config=global,,avg_wait,,2840,0.5,README.md,global은 코어가 늘수록 평균 대기가 악화(2840→5725)
+C-E4B-03,value,results/e4_multicore_scaling.csv,ncpu=16;workload=mixed;config=global,,avg_wait,,5725,0.5,README.md,global은 코어가 늘수록 평균 대기가 악화(2840→5725)
+C-E4B-04,series,results/e4_multicore_scaling.csv,workload=mixed;config=global,,util,ncpu,dec,,README.md,유효 이용률이 하락
+C-E4B-05,spread,results/e4_multicore_scaling.csv,"workload=mixed;config=percpu(soft,lb100)",,avg_wait,,<=0.05,,README.md,per-CPU는 거의 평탄
+C-E4B-06,spread,results/e4_multicore_scaling.csv,"workload=mixed;config=percpu(soft,lb100)",,util,,<=0.05,,README.md,per-CPU는 거의 평탄
+C-E4B-07,ratio,results/e4_multicore_scaling.csv,ncpu=2;workload=mixed;config=global,"ncpu=2;workload=mixed;config=percpu(soft,lb100)",migrations,,9..12,,README.md,마이그레이션이 global에서 약 9~12배 많음
+C-E4B-08,ratio,results/e4_multicore_scaling.csv,ncpu=4;workload=mixed;config=global,"ncpu=4;workload=mixed;config=percpu(soft,lb100)",migrations,,9..12,,README.md,마이그레이션이 global에서 약 9~12배 많음
+C-E4B-09,ratio,results/e4_multicore_scaling.csv,ncpu=8;workload=mixed;config=global,"ncpu=8;workload=mixed;config=percpu(soft,lb100)",migrations,,9..12,,README.md,마이그레이션이 global에서 약 9~12배 많음
+C-E4B-10,ratio,results/e4_multicore_scaling.csv,ncpu=16;workload=mixed;config=global,"ncpu=16;workload=mixed;config=percpu(soft,lb100)",migrations,,9..12,,README.md,마이그레이션이 global에서 약 9~12배 많음
+C-E5-01,min,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict,,migrations,,0,0.5,README.md,마이그레이션이 적고(0~244)
+C-E5-02,max,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict,,migrations,,244,0.5,README.md,마이그레이션이 적고(0~244)
+C-E5-03,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=soft,workload=mixed;affinity=strict,migrations,,,,README.md,마이그레이션이 적고(0~244)
+C-E5-04,min,results/e5_affinity_loadbalance.csv,workload=mixed,,int_lat_p95,,10.5,0.05,README.md,interactive p95 지연이 가장 낮음(10.5)
+C-E5-05,argmin,results/e5_affinity_loadbalance.csv,workload=mixed,,int_lat_p95,affinity,strict,,README.md,interactive p95 지연이 가장 낮음(10.5)
+C-E5-06,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=0;idle_steal=0,,imbalance,,0.3,0.05,README.md,"steal/balance가 없으면 imbalance 0.3, makespan 7637로 느림"
+C-E5-07,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=0;idle_steal=0,,makespan,,7637,0.5,README.md,"steal/balance가 없으면 imbalance 0.3, makespan 7637로 느림"
+C-E5-08,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=0;idle_steal=0,,makespan,,7637,0.5,README.md,makespan 7637→6816(-11%)
+C-E5-09,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=0;idle_steal=1,,makespan,,6816,0.5,README.md,makespan 7637→6816(-11%)
+C-E5-10,rel,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=0;idle_steal=0,workload=mixed;affinity=strict;lb_period=0;idle_steal=1,makespan,,-11,0.5,README.md,makespan 7637→6816(-11%)
+C-E5-11,min,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none,,migrations,,2441,0.5,README.md,마이그레이션 2441~2547
+C-E5-12,max,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none,,migrations,,2547,0.5,README.md,마이그레이션 2441~2547
+C-E5-13,min,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none,,avg_wait,,2551,0.5,README.md,평균 대기 2551~2632로 세 affinity 중 가장 나쁨
+C-E5-14,max,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none,,avg_wait,,2632,0.5,README.md,평균 대기 2551~2632로 세 affinity 중 가장 나쁨
+C-E5-15,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none,workload=mixed;affinity!=none,avg_wait,,,,README.md,평균 대기 2551~2632로 세 affinity 중 가장 나쁨
+C-E5-16,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none;lb_period=0;idle_steal=0,,avg_wait,,2569,0.5,README.md,(훔치기와 밸런싱이 없는 구성은 2569)
+C-E5-17,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=soft,workload=mixed;affinity=strict,avg_wait,,,,README.md,평균 대기와 마이그레이션 횟수가 strict와 none의 중간입니다
+C-E5-18,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none,workload=mixed;affinity=soft,avg_wait,,,,README.md,평균 대기와 마이그레이션 횟수가 strict와 none의 중간입니다
+C-E5-19,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=soft,workload=mixed;affinity=strict,migrations,,,,README.md,평균 대기와 마이그레이션 횟수가 strict와 none의 중간입니다
+C-E5-20,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none,workload=mixed;affinity=soft,migrations,,,,README.md,평균 대기와 마이그레이션 횟수가 strict와 none의 중간입니다
+C-E5-21,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=400;idle_steal=1,,avg_wait,,1959,0.5,README.md,strict: 평균 대기 1959→2023(+3.3%)
+C-E5-22,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=25;idle_steal=1,,avg_wait,,2023,0.5,README.md,strict: 평균 대기 1959→2023(+3.3%)
+C-E5-23,rel,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=400;idle_steal=1,workload=mixed;affinity=strict;lb_period=25;idle_steal=1,avg_wait,,+3.3,0.05,README.md,strict: 평균 대기 1959→2023(+3.3%)
+C-E5-24,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=400;idle_steal=1,,int_lat_p95,,12.4,0.05,README.md,p95 12.4→18.3(+48%)
+C-E5-25,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=25;idle_steal=1,,int_lat_p95,,18.3,0.05,README.md,p95 12.4→18.3(+48%)
+C-E5-26,rel,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=400;idle_steal=1,workload=mixed;affinity=strict;lb_period=25;idle_steal=1,int_lat_p95,,+48,0.5,README.md,p95 12.4→18.3(+48%)
+C-E5-27,series,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;idle_steal=1;lb_period>0,,avg_wait,lb_period,dec,,README.md,평균 대기는 세 affinity 모두 주기가 짧을수록 단조롭게 늘고
+C-E5-28,series,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=soft;idle_steal=1;lb_period>0,,avg_wait,lb_period,dec,,README.md,평균 대기는 세 affinity 모두 주기가 짧을수록 단조롭게 늘고
+C-E5-29,series,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none;idle_steal=1;lb_period>0,,avg_wait,lb_period,dec,,README.md,평균 대기는 세 affinity 모두 주기가 짧을수록 단조롭게 늘고
+C-E5-30,series,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=soft;idle_steal=1;lb_period>0,,int_lat_p95,lb_period,dec,,README.md,p95는 soft와 none에서 단조이지만
+C-E5-31,series,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=none;idle_steal=1;lb_period>0,,int_lat_p95,lb_period,dec,,README.md,p95는 soft와 none에서 단조이지만
+C-E5-32,value,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=100;idle_steal=1,,int_lat_p95,,20.0,0.05,README.md,strict는 주기 100에서 20.0으로 단조가 아닙니다
+C-E5-33,rel,results/e5_affinity_loadbalance.csv,workload=mixed;affinity=strict;lb_period=25;idle_steal=1,workload=mixed;affinity=strict;lb_period=100;idle_steal=1,int_lat_p95,,>0,,README.md,strict는 주기 100에서 20.0으로 단조가 아닙니다
+C-E5-34,min,results/e5_affinity_loadbalance.csv,workload=mixed,,avg_wait,,1932,0.5,README.md,"(밸런싱 없음, 1932)"
+C-E5-35,argmin,results/e5_affinity_loadbalance.csv,workload=mixed,,avg_wait,affinity,strict,,README.md,"(밸런싱 없음, 1932)"
+C-E5-36,argmin,results/e5_affinity_loadbalance.csv,workload=mixed,,avg_wait,lb_period,0,,README.md,"(밸런싱 없음, 1932)"
+C-E5-37,argmin,results/e5_affinity_loadbalance.csv,workload=mixed,,avg_wait,idle_steal,1,,README.md,"(밸런싱 없음, 1932)"
+C-E5-38,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity!=none;idle_steal=1,workload=mixed;affinity=none;idle_steal=1,imbalance,,,,README.md,균형은 좋지만 locality를 버림
+C-E5-39,gt,results/e5_affinity_loadbalance.csv,workload=mixed;affinity!=none;idle_steal=0,workload=mixed;affinity=none;idle_steal=0,imbalance,,,,README.md,균형은 좋지만 locality를 버림
+C-E6-01,count,results/e6_cost_sensitivity.csv,,,,,15..15,,README.md,락 비용 5개 x 마이그레이션 페널티 3개의 격자
+C-E6-02,count,results/e6_cost_sensitivity.csv,mig_penalty=0,,,,5,0,README.md,락 비용 5개 x 마이그레이션 페널티 3개의 격자
+C-E6-03,count,results/e6_cost_sensitivity.csv,lock_cost=0,,,,3,0,README.md,락 비용 5개 x 마이그레이션 페널티 3개의 격자
+C-E6-04,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=0,,g_wait,,1946,0.5,README.md,"(1946 vs 1961, +0.7% [-0.9, +2.4])"
+C-E6-05,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=0,,p_wait,,1961,0.5,README.md,"(1946 vs 1961, +0.7% [-0.9, +2.4])"
+C-E6-06,colrel,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=0,,p_wait/g_wait,,+0.7,0.05,README.md,"(1946 vs 1961, +0.7% [-0.9, +2.4])"
+C-E6-07,value,results/validation/ci_summary.csv,cid=E6-00;metric=avg_wait;model=default,,rel_lo,,-0.9,0.05,README.md,"(1946 vs 1961, +0.7% [-0.9, +2.4])"
+C-E6-08,value,results/validation/ci_summary.csv,cid=E6-00;metric=avg_wait;model=default,,rel_hi,,+2.4,0.05,README.md,"(1946 vs 1961, +0.7% [-0.9, +2.4])"
+C-E6-09,value,results/validation/ci_summary.csv,cid=E6-00;metric=avg_wait;model=default,,rel_lo,,<0,,README.md,두 구조의 평균 대기는 구분되지 않고
+C-E6-10,value,results/validation/ci_summary.csv,cid=E6-00;metric=avg_wait;model=default,,rel_hi,,>0,,README.md,두 구조의 평균 대기는 구분되지 않고
+C-E6-11,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=0,,g_lat95,,0.7,0.05,README.md,**global이 interactive 지연 p95에서 오히려 우세**(0.7 vs 12.3)
+C-E6-12,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=0,,p_lat95,,12.3,0.05,README.md,**global이 interactive 지연 p95에서 오히려 우세**(0.7 vs 12.3)
+C-E6-13,colrel,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=0,,g_lat95/p_lat95,,<0,,README.md,**global이 interactive 지연 p95에서 오히려 우세**(0.7 vs 12.3)
+C-E6-14,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=3,,g_wait,,3192,0.5,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-15,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=10,,g_wait,,10591,0.5,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-16,value,results/e6_cost_sensitivity.csv,lock_cost=0.25;mig_penalty=3,,g_wait,,4028,0.5,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-17,value,results/e6_cost_sensitivity.csv,lock_cost=0.25;mig_penalty=10,,g_wait,,12589,0.5,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-18,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=3,,p_wait,,2168,0.5,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-19,value,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=10,,p_wait,,2885,0.5,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-20,ratio,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=10,lock_cost=0;mig_penalty=3,g_wait,,>=3,,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-21,ratio,results/e6_cost_sensitivity.csv,lock_cost=0.25;mig_penalty=10,lock_cost=0.25;mig_penalty=3,g_wait,,>=3,,README.md,"락 비용 0에서 3192 → 10591, 기본 락 비용 0.25에서 4028 → 12589로 폭증하고 per-CPU는 2168 → 2885로 늘어납니다"
+C-E6-22,spread,results/e6_cost_sensitivity.csv,mig_penalty=0,,p_wait,,0,0,README.md,(per-CPU는 락 비용의 영향을 받지 않음)
+C-E6-23,spread,results/e6_cost_sensitivity.csv,mig_penalty=3,,p_wait,,0,0,README.md,(per-CPU는 락 비용의 영향을 받지 않음)
+C-E6-24,spread,results/e6_cost_sensitivity.csv,mig_penalty=10,,p_wait,,0,0,README.md,(per-CPU는 락 비용의 영향을 받지 않음)
+C-E6-25,colratio,results/e6_cost_sensitivity.csv,lock_cost=0.25;mig_penalty=3,,p_wait/g_wait,,0.54,0.005,README.md,"기본 비용(락 0.25, 페널티 3)에서 0.54"
+C-E6-26,colratio,results/e6_cost_sensitivity.csv,lock_cost=0.25;mig_penalty=0,,p_wait/g_wait,,0.75,0.005,README.md,락 비용만 있을 때(페널티 0)는 0.75
+C-E6-27,colratio,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=3,,p_wait/g_wait,,0.68,0.005,README.md,"페널티만 있을 때(락 0, 페널티 3)는 0.68"
+C-E6-28,colratio,results/e6_cost_sensitivity.csv,lock_cost=0;mig_penalty=10,,p_wait/g_wait,,0.27,0.005,README.md,페널티 10(락 0)에서는 0.27
+C-E6-29,series,results/e6_cost_sensitivity.csv,lock_cost=0,,wait_ratio_p_over_g,mig_penalty,dec,,README.md,페널티가 클수록 후자가 지배적
+C-E6-30,series,results/e6_cost_sensitivity.csv,lock_cost=0.25,,wait_ratio_p_over_g,mig_penalty,dec,,README.md,페널티가 클수록 후자가 지배적
+C-F1-01,count,results/validation/ci_summary.csv,exp=F1;metric=avg_wait,,,,20,0,README.md,"비교한 20개 구성에서 평균 대기는 최대 3.9%, interactive p95는 최대 9.2% 바뀌었고"
+C-F1-02,maxabs,results/validation/ci_summary.csv,exp=F1;metric=avg_wait,,rel_pct,,3.9,0.05,README.md,"비교한 20개 구성에서 평균 대기는 최대 3.9%, interactive p95는 최대 9.2% 바뀌었고"
+C-F1-03,maxabs,results/validation/ci_summary.csv,exp=F1;metric=int_lat_p95,,rel_pct,,9.2,0.05,README.md,"비교한 20개 구성에서 평균 대기는 최대 3.9%, interactive p95는 최대 9.2% 바뀌었고"
+C-F1-04,maxabs,results/validation/ci_summary.csv,exp=F1;metric=migrations,,rel_pct,,20.6,0.05,README.md,"같은 20개 구성에서 최대 20.6% 바뀌고(strict, 주기 100, 훔치기)"
+C-F1-05,colrel,results/validation/f1_negative_waits.csv,workload=mixed;ncpu=8;mode=percpu;policy=static;affinity=strict;lb_period=0;idle_steal=1,,migrations_defer/migrations_default,,-28,0.5,README.md,-28%(1390→1004)
+C-F1-06,value,results/validation/f1_negative_waits.csv,workload=mixed;ncpu=8;mode=percpu;policy=static;affinity=strict;lb_period=0;idle_steal=1,,migrations_default,,1390,0.5,README.md,-28%(1390→1004)
+C-F1-07,value,results/validation/f1_negative_waits.csv,workload=mixed;ncpu=8;mode=percpu;policy=static;affinity=strict;lb_period=0;idle_steal=1,,migrations_defer,,1004,0.5,README.md,-28%(1390→1004)
+C-F1-08,max,results/validation/f1_negative_waits.csv,ncpu=1,,neg_waits,,<=0,,README.md,멀티코어에서 같은 틱 이중 사용
+C-F1-09,max,results/validation/f1_negative_waits.csv,ncpu>1,,neg_waits,,>0,,README.md,멀티코어에서 같은 틱 이중 사용
+C-F1-10,min,results/validation/ci_summary.csv,exp=E4;metric=avg_wait;a=global;b=percpu,,b_lt_a,,>=10,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-F1-11,min,results/validation/ci_summary.csv,cid=E4-scale-global;metric=avg_wait,,rel_lo,,>0,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-F1-12,max,results/validation/ci_summary.csv,cid=E4-scale-percpu;metric=avg_wait,,rel_lo,,<0,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-F1-13,min,results/validation/ci_summary.csv,cid=E4-scale-percpu;metric=avg_wait,,rel_hi,,>0,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-F1-14,max,results/validation/ci_summary.csv,cid=E6-00;metric=avg_wait,,rel_lo,,<0,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-F1-15,min,results/validation/ci_summary.csv,cid=E6-00;metric=avg_wait,,rel_hi,,>0,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-F1-16,min,results/validation/ci_summary.csv,cid=E6-00;metric=int_lat_p95,,rel_lo,,>0,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-F1-17,max,results/validation/ci_summary.csv,cid=E5-01;metric=makespan,,rel_hi,,<0,,README.md,문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다
+C-ST-01,grep,tests/test_invariants.py,^\s+def test_h\d+_,,,,14,0,README.md,손계산 사례 14개 일치
+C-ST-02,count,results/validation/mutation_check.csv,,,,,36,0,README.md,변이 36개를 모두 잡음
+C-ST-03,count,results/validation/mutation_check.csv,status=잡힘,,,,36,0,README.md,변이 36개를 모두 잡음
+C-ST-04,count,results/validation/mutation_check_checker.csv,,,,,50,0,README.md,점검기를 일부러 틀리게 고친 50곳을 모두 잡는다
+C-ST-05,count,results/validation/mutation_check_checker.csv,status=잡힘,,,,50,0,README.md,점검기를 일부러 틀리게 고친 50곳을 모두 잡는다
+C-LED-01,grep,refs/claims-ledger.md,^\| R\d\d \|,,,,53,0,README.md,자체 결과 주장 53개
+C-LED-02,grep,refs/claims-ledger.md,^\| L\d\d \|,,,,28,0,README.md,문헌 주장 28개
+C-LED-03,count,refs/claims-checks.csv,,,,,286,0,README.md,수치 점검 286개
+C-LED-04,grep,refs/claims-ledger.md,^\| R\d\d \|.*\| 고침 \| V \|,,,,19,0,README.md,README 문장 19개가 결과와 어긋나 고쳤다
+C-LED-05,grep,refs/claims-ledger.md,^\| R\d\d \|.*\| 미검증 \| X \|,,,,5,0,README.md,문장 5개는 점검하지 못해
+C-CODE-01,grep,mlfqsim/policies.py,"def __init__\(self, base: int = 4, levels: int = 4, growth: int = 2\):\n        self\.q = \[base \* growth\*\*i for i in range\(levels\)\]",,,,>=1,,README.md,- **static**: `q[l] = base · 2^l`
+C-CODE-02,grep,mlfqsim/policies.py,"lo=0\.25, hi=2\.0\):",,,,>=1,,README.md,"대기 압력 `p = 대기 task 수 / CPU 수`, `scale = clamp(2/(1+p), 0.25, 2)`"
+C-CODE-03,grep,mlfqsim/policies.py,"p = mlfq\.n / mlfq\.cpus_served\n        return min\(self\.hi, max\(self\.lo, 2\.0 / \(1\.0 \+ p\)\)\)",,,,>=1,,README.md,"대기 압력 `p = 대기 task 수 / CPU 수`, `scale = clamp(2/(1+p), 0.25, 2)`"
+C-CODE-04,grep,mlfqsim/policies.py,self\.ema\[level\] = 0\.9 \* self\.ema\[level\] \+ 0\.1 \* \(1\.0 if expired else 0\.0\),,,,>=1,,README.md,"- **feedback (workload 기반)**: 레벨별로 ""quantum을 끝까지 쓴 비율""의 EMA를 추적해"
+C-CODE-05,grep,mlfqsim/policies.py,"return self\.s\[level\] \* self\._load\.scale\(level, mlfq\)",,,,>=1,,README.md,- **hybrid**: feedback × load.
+C-CODE-06,grep,mlfqsim/sim.py,cs_cost: int = 1 ,,,,>=1,,README.md,"비용 가정(조정 가능, E6에서 민감도 분석): context switch 1틱, 다른 CPU로 옮겨 실행 시 작업량 +3틱, global 큐 dispatch당 `(N-1)·0.25`틱 락 경합."
+C-CODE-07,grep,mlfqsim/sim.py,mig_penalty: int = 3 ,,,,>=1,,README.md,"비용 가정(조정 가능, E6에서 민감도 분석): context switch 1틱, 다른 CPU로 옮겨 실행 시 작업량 +3틱, global 큐 dispatch당 `(N-1)·0.25`틱 락 경합."
+C-CODE-08,grep,mlfqsim/sim.py,lock_cost: float = 0\.25 ,,,,>=1,,README.md,"비용 가정(조정 가능, E6에서 민감도 분석): context switch 1틱, 다른 CPU로 옮겨 실행 시 작업량 +3틱, global 큐 dispatch당 `(N-1)·0.25`틱 락 경합."
+C-CODE-09,grep,mlfqsim/sim.py,if glob and n > 1:\n                    c\.carry \+= cfg\.lock_cost \* \(n - 1\),,,,>=1,,README.md,"비용 가정(조정 가능, E6에서 민감도 분석): context switch 1틱, 다른 CPU로 옮겨 실행 시 작업량 +3틱, global 큐 dispatch당 `(N-1)·0.25`틱 락 경합."
+C-CODE-10,grep,mlfqsim/sim.py,mig_penalty: int = 3 ,,,,>=1,,README.md,"기본값은 락 비용 0.25, 페널티 3입니다"
+C-CODE-11,grep,mlfqsim/sim.py,lock_cost: float = 0\.25 ,,,,>=1,,README.md,"기본값은 락 비용 0.25, 페널티 3입니다"
+C-CODE-12,grep,mlfqsim/sim.py,c\.carry \+= cfg\.lock_cost \* \(n - 1\),,,,>=1,,README.md,global에서의 락 경합은 `lock_cost·(N-1)` 선형 모델입니다
+C-CODE-13,grep,experiments.py,^SEEDS = range\(10\)$,,,,>=1,,README.md,seed 10개 평균으로 6개 실험을 돌렸습니다
+C-CODE-14,grep,experiments.py,^def e[1-6]_,,,,6,0,README.md,seed 10개 평균으로 6개 실험을 돌렸습니다
+C-CODE-15,grep,mlfqsim/sim.py,"""max_wait"": max\(t\.max_wait for t in tasks\)",,,,>=1,,README.md,`max_wait`(task 중 최대 대기)
