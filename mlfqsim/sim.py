@@ -66,6 +66,12 @@ class Config:
     idle_steal: bool = True       # idle CPU가 다른 CPU에서 훔쳐오기
     starve_thresh: int = 1000
     max_t: int = 400_000
+    # False(기본): 기존 동작. quantum이 끝난 task를 그 틱 안에서 바로 큐에 넣는다. ready_since가
+    #   t+1인 task를 같은 틱 t의 뒤쪽 CPU가 가져갈 수 있어 대기가 -1틱으로 기록되고, 멀티코어에서
+    #   불필요한 이주가 생긴다(docs/03-measurement-validation.md의 발견 F1).
+    # True: 그 틱이 끝난 뒤에 큐에 넣는다(다음 틱부터 보인다). 기본값이 False인 것은 저장된 결과를
+    #   그대로 재현하기 위해서이며, 어느 쪽을 기본으로 할지는 사람이 정할 일이다.
+    defer_requeue: bool = False
 
 
 def run(tasks: list[Task], cfg: Config) -> dict:
@@ -137,6 +143,7 @@ def run(tasks: list[Task], cfg: Config) -> dict:
         if not glob and cfg.lb_period and t > 0 and t % cfg.lb_period == 0:
             balance()
 
+        deferred: list = []  # defer_requeue=True일 때 이번 틱에 quantum이 끝난 (큐, task)
         for ci, c in enumerate(cpus):
             m = mq(ci)
             # 선점: 더 높은 우선순위가 대기 중이면
@@ -202,8 +209,13 @@ def run(tasks: list[Task], cfg: Config) -> dict:
                 m.policy.observe(tk.level, True)
                 tk.level = min(tk.level + 1, cfg.levels - 1)
                 tk.ready_since = t + 1
-                m.push(tk)
+                if cfg.defer_requeue:
+                    deferred.append((m, tk))
+                else:
+                    m.push(tk)
                 c.run = None
+        for m, tk in deferred:
+            m.push(tk)
         t += 1
 
     return _metrics(tasks, cpus, t, switches, migrations, cfg)

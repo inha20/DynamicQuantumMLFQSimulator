@@ -1,0 +1,37 @@
+id,file,description,status,first_failing_test
+M01,mlfqsim/sim.py,quantum 소진 task의 ready_since를 t+1 대신 t로,잡힘,test_h1_single_task_context_switch
+M02,mlfqsim/sim.py,문맥 전환 비용 무시,잡힘,test_h10_global_lock_cost_is_charged_without_contention
+M03,mlfqsim/sim.py,락 비용에 (n-1) 대신 n,잡힘,test_h10_global_lock_cost_is_charged_without_contention
+M04,mlfqsim/sim.py,이주 페널티 무시,잡힘,test_h11_soft_affinity_slack
+M05,mlfqsim/sim.py,같은 레벨도 선점,잡힘,test_h11_soft_affinity_slack
+M06,mlfqsim/sim.py,boost 시각을 한 틱 어긋나게,잡힘,test_h5_boost_relieves_starvation
+M07,mlfqsim/sim.py,boost가 실행 중인 task의 레벨을 올리지 않음,잡힘,test_h14_boost_resets_level_of_running_task
+M08,mlfqsim/sim.py,마지막 레벨까지 내려가지 않음,잡힘,test_h14_boost_resets_level_of_running_task
+M09,mlfqsim/sim.py,idle 훔치기 끔,잡힘,test_h13_steal_victim_and_tail
+M10,mlfqsim/sim.py,soft affinity 경계(<를 <=로),잡힘,test_h11_soft_affinity_slack
+M11,mlfqsim/sim.py,밸런싱 문턱을 2에서 3으로,잡힘,test_h12_periodic_balance
+M12,mlfqsim/sim.py,훔칠 CPU를 고를 때 동률이면 높은 번호,잡힘,test_h13_steal_victim_and_tail
+M13,mlfqsim/sim.py,I/O 길이를 한 틱 짧게,잡힘,test_h11_soft_affinity_slack
+M14,mlfqsim/sim.py,첫 실행도 이주로 셈,잡힘,test_h10_global_lock_cost_is_charged_without_contention
+M15,mlfqsim/sim.py,디스패치마다 문맥 전환으로 셈,잡힘,test_h10_global_lock_cost_is_charged_without_contention
+M16,mlfqsim/sim.py,대기 계산을 한 틱 짧게,잡힘,test_h11_soft_affinity_slack
+M17,mlfqsim/sim.py,유효 이용률에 이주 페널티 작업량을 포함,잡힘,test_h9_strict_vs_none_placement_after_wake
+M18,mlfqsim/sim.py,p95 위치를 p90으로,잡힘,test_p95_is_index_floor_of_0_95n
+M19,mlfqsim/sim.py,불균형 분모를 합으로,잡힘,test_h6_global_two_cpus_lock_cost_carry
+M20,mlfqsim/sim.py,starved 경계(>를 >=로),잡힘,test_h2_two_tasks_demotion_and_wait
+M21,mlfqsim/sim.py,한 번도 실행하지 않은 task의 배치,잡힘,test_h11_soft_affinity_slack
+M22,mlfqsim/sim.py,기본 모델을 보정 모델로 바꿈(저장된 결과가 달라지는 변경),잡힘,test_h8_same_tick_handoff_reproducer
+P01,mlfqsim/policies.py,load 정책의 scale 식,잡힘,test_hybrid_is_product
+P02,mlfqsim/policies.py,feedback EMA 가중치,잡힘,test_feedback_after_early_yields
+P03,mlfqsim/policies.py,feedback 확대 문턱,잡힘,test_feedback_after_expiries
+P04,mlfqsim/policies.py,feedback 확대 비율,잡힘,test_feedback_after_expiries
+P05,mlfqsim/policies.py,훔칠 때 꼬리 대신 머리를,잡힘,test_h13_steal_victim_and_tail
+P06,mlfqsim/policies.py,훔칠 때 가장 낮은 우선순위 대신 가장 높은 우선순위 큐에서,잡힘,test_steal_takes_tail_of_lowest_priority_queue
+P07,mlfqsim/policies.py,큐의 boost가 레벨을 올리지 않음,잡힘,test_h5_boost_relieves_starvation
+P08,mlfqsim/policies.py,hybrid를 곱 대신 합으로,잡힘,test_hybrid_is_product
+P09,mlfqsim/policies.py,quantum을 반올림 대신 버림으로,잡힘,test_feedback_after_early_yields
+P10,mlfqsim/policies.py,load 정책이 CPU 수로 나누지 않음,잡힘,test_load_uses_cpus_served
+P11,mlfqsim/policies.py,선점된 task를 앞에 넣지 않음,잡힘,test_front_push
+W01,mlfqsim/workload.py,interactive CPU 버스트 범위,잡힘,test_bounds
+W02,mlfqsim/workload.py,starve workload의 batch 작업량,잡힘,test_burst_shapes
+W03,mlfqsim/workload.py,interactive workload의 interactive 비율,잡힘,test_interactive_share

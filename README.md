@@ -15,10 +15,10 @@
 
 | 단계 | 상태 |
 |---|---|
-| 시뮬레이터, 실험 E1–E6, 결과 | 있음(탐색적 결과). 2026-11-08에 처음부터 다시 돌려 결과 CSV 6개가 저장본과 바이트까지 같음을 확인했다 |
-| 측정 도구 검증(불변식, 손계산 사례, 재현 점검, 신뢰구간) | 진행 중 |
-| 선행연구 위치 잡기(G4) | 진행 중 |
-| 주장 대장과 문서-결과 수치 대조 | 진행 중 |
+| 시뮬레이터, 실험 E1–E6, 결과 | 있음(탐색적 결과). 2026-11-08에 처음부터 다시 돌려 결과 CSV 6개가 저장본과 같음을 확인했다(줄바꿈 표기 CRLF/LF를 맞춘 뒤 바이트 단위로 비교) |
+| 측정 도구 검증(손계산 사례, 불변식, 변이 점검, 재현 점검, 신뢰구간) | 초안 완료, 사람의 검토 전: [docs/03-measurement-validation.md](docs/03-measurement-validation.md). 손계산 사례 14개 일치, 변이 36개를 모두 잡음. **결함 1건 발견(F1: 멀티코어에서 같은 틱 이중 사용)**. 영향은 작지만 아래 "한계"의 E4~E6 수치 주의를 보라 |
+| 선행연구 위치 잡기(G4) | 예정 |
+| 주장 대장과 문서-결과 수치 대조 | 예정. 이 README의 일부 문장이 결과 CSV와 어긋남을 이미 확인했다(검증 문서 §8) |
 | 질문형 연구 질문과 사전 분석 계획(G5 초안) | 예정. 확인용 실행과 새 정책 구현은 계획을 동결(사람의 승인)하기 전에는 하지 않는다 |
 
 단계별 기록과 막힌 점은 [docs/00-progress-log.md](docs/00-progress-log.md)에 있다.
@@ -26,8 +26,12 @@
 ## 실행
 
 ```bash
-python -m unittest discover -s tests   # 테스트
+python -m unittest discover -s tests   # 테스트 (약 10초)
 python experiments.py                  # 전체 실험 (약 1~2분) -> results/
+python analysis/check_reproduce.py     # 저장된 결과를 처음부터 다시 만들어 비교 (약 1분, 저장소의 results/는 건드리지 않음)
+python analysis/bootstrap_ci.py        # 신뢰구간 -> results/validation/ci_summary.csv (약 30초)
+python analysis/mutation_check.py      # 시험이 일부러 넣은 결함을 잡는지 확인 (약 3분)
+python analysis/diag_f1.py             # 결함 F1의 빈도 -> results/validation/f1_negative_waits.csv (약 30초)
 ```
 
 ## 구조
@@ -38,8 +42,12 @@ python experiments.py                  # 전체 실험 (약 1~2분) -> results/
 | `mlfqsim/sim.py` | 시뮬레이터 (global MLFQ / per-CPU, affinity, load balancing, 비용 모델) |
 | `mlfqsim/workload.py` | interactive / batch / mixed / bursty / starve workload 생성기 |
 | `experiments.py` | E1~E6 실험 + 그래프 |
+| `tests/` | 단위 시험. `test_sim.py`(기존), `test_invariants.py`(손계산 사례와 불변식), `test_analysis_tools.py`(분석 도구) |
+| `analysis/` | 신뢰구간(`bootstrap_ci.py`), 재현 점검(`check_reproduce.py`), 변이 점검(`mutation_check.py`), F1 빈도(`diag_f1.py`) |
 | `results/` | CSV, `summary.md`, PNG |
+| `results/validation/` | `analysis/` 도구의 결과 CSV(신뢰구간, 변이 점검, F1 빈도) |
 | `docs/00-progress-log.md` | 진행 기록(AI 초안) |
+| `docs/03-measurement-validation.md` | 측정 도구 검증(AI 초안) |
 
 ## 모델링한 정책
 
@@ -108,7 +116,8 @@ python experiments.py                  # 전체 실험 (약 1~2분) -> results/
 - 합성 workload와 단순화된 비용 모델이며, 실제 커널(CFS/EEVDF, ULE 등)과 직접 비교한 수치가 아닙니다. 절대값이 아니라 **경향과 민감도**로 읽어야 합니다.
 - global에서의 락 경합은 `lock_cost·(N-1)` 선형 모델입니다. 락 구현(예: 분할 락, lock-free)에 따라 크게 달라집니다.
 - dynamic 정책의 파라미터(`2/(1+p)`, EMA 임계값)는 튜닝하지 않았습니다. hybrid의 악화는 이 파라미터 + demotion 규칙의 결합 결과이며 일반 결론이 아닙니다.
-- seed 10회 평균이며 신뢰구간은 계산하지 않았습니다.
+- seed 10회 평균입니다. 탐색용 신뢰구간(부트스트랩)은 `results/validation/ci_summary.csv`에 있지만, seed가 10개뿐이라 구간이 실제보다 좁게 나오는 경향이 있고 다중 비교 보정을 하지 않았습니다.
+- **E4~E6(멀티코어)의 수치는 시뮬레이터 기본 모델의 값입니다.** 이 모델에는 quantum이 끝난 task가 같은 틱 안에 큐로 돌아가 번호가 더 큰 CPU가 곧바로 가져갈 수 있는 결함(F1, [검증 문서](docs/03-measurement-validation.md) §4)이 있습니다. 보정 옵션(`Config.defer_requeue=True`)으로 같은 구성을 돌려 비교한 20개 구성에서 평균 대기는 최대 3.9%, interactive p95는 최대 9.2% 바뀌었고, 문서 §4.4에서 확인한 비교의 방향은 바뀌지 않았습니다. 이주 횟수는 구성에 따라 더 크게 바뀝니다(strict + 훔치기에서 -28%). 어느 모델을 기본으로 삼고 E4~E6을 다시 낼지는 사람이 정할 일이라 결과 파일은 바꾸지 않았습니다.
 
 ## License
 
