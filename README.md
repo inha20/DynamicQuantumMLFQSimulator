@@ -17,7 +17,7 @@
 |---|---|
 | 시뮬레이터, 실험 E1–E6, 결과 | 있음(탐색적 결과). 2026-11-08에 처음부터 다시 돌려 결과 CSV 6개가 저장본과 같음을 확인했다(줄바꿈 표기 CRLF/LF를 맞춘 뒤 바이트 단위로 비교) |
 | 측정 도구 검증(손계산 사례, 불변식, 변이 점검, 재현 점검, 신뢰구간) | 초안 완료, 사람의 검토 전: [docs/03-measurement-validation.md](docs/03-measurement-validation.md). 손계산 사례 14개 일치, 변이 36개를 모두 잡음. **결함 1건 발견(F1: 멀티코어에서 같은 틱 이중 사용)**. 영향은 작지만 아래 "한계"의 E4~E6 수치 주의를 보라 |
-| 선행연구 위치 잡기(G4) | 예정 |
+| 선행연구 위치 잡기(G4) | 초안 완료, 조건부, 사람의 검토 전: [docs/01-prior-art.md](docs/01-prior-art.md), 검색 기록 [refs/g4-search-log.md](refs/g4-search-log.md)(검색·열람 74회). 질문을 셋(RQ-A 동적 quantum, RQ-B global 대 per-CPU, RQ-C 강등 판정과 quantum의 분리)으로 나눠 하위 주장 20개를 판정했다: 동일 12, 부분 4, 찾지 못함 4. 새롭다는 주장을 하지 않는다. 가장 가까운 선행은 중앙 큐와 CPU별 큐를 이주 비용에 따라 시뮬레이션으로 비교한 1990년 연구다. 인용 추적을 하지 못해 '없음' 판정은 쓰지 않았다 |
 | 주장 대장과 문서-결과 수치 대조 | 예정. 이 README의 일부 문장이 결과 CSV와 어긋남을 이미 확인했다(검증 문서 §8) |
 | 질문형 연구 질문과 사전 분석 계획(G5 초안) | 예정. 확인용 실행과 새 정책 구현은 계획을 동결(사람의 승인)하기 전에는 하지 않는다 |
 
@@ -47,7 +47,9 @@ python analysis/diag_f1.py             # 결함 F1의 빈도 -> results/validati
 | `results/` | CSV, `summary.md`, PNG |
 | `results/validation/` | `analysis/` 도구의 결과 CSV(신뢰구간, 변이 점검, F1 빈도) |
 | `docs/00-progress-log.md` | 진행 기록(AI 초안) |
+| `docs/01-prior-art.md` | 선행연구 위치 잡기(G4, AI 초안, 조건부) |
 | `docs/03-measurement-validation.md` | 측정 도구 검증(AI 초안) |
+| `refs/g4-search-log.md` | G4 검색·열람 기록(호출 코드 G4-001~074) |
 
 ## 모델링한 정책
 
