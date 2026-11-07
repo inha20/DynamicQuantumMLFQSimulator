@@ -18,15 +18,15 @@
 | 시뮬레이터, 실험 E1–E6, 결과 | 있음(탐색적 결과). 2026-11-08에 처음부터 다시 돌려 결과 CSV 6개가 저장본과 같음을 확인했다(줄바꿈 표기 CRLF/LF를 맞춘 뒤 바이트 단위로 비교) |
 | 측정 도구 검증(손계산 사례, 불변식, 변이 점검, 재현 점검, 신뢰구간) | 초안 완료, 사람의 검토 전: [docs/03-measurement-validation.md](docs/03-measurement-validation.md). 손계산 사례 14개 일치, 변이 36개를 모두 잡음. **결함 1건 발견(F1: 멀티코어에서 같은 틱 이중 사용)**. 영향은 작지만 아래 "한계"의 E4~E6 수치 주의를 보라 |
 | 선행연구 위치 잡기(G4) | 초안 완료, 조건부, 사람의 검토 전: [docs/01-prior-art.md](docs/01-prior-art.md), 검색 기록 [refs/g4-search-log.md](refs/g4-search-log.md)(검색·열람 74회). 질문을 셋(RQ-A 동적 quantum, RQ-B global 대 per-CPU, RQ-C 강등 판정과 quantum의 분리)으로 나눠 하위 주장 20개를 판정했다: 동일 12, 부분 4, 찾지 못함 4. 새롭다는 주장을 하지 않는다. 가장 가까운 선행은 중앙 큐와 CPU별 큐를 이주 비용에 따라 시뮬레이션으로 비교한 1990년 연구다. 인용 추적을 하지 못해 '없음' 판정은 쓰지 않았다 |
-| 주장 대장과 문서-결과 수치 대조 | 초안 완료, 사람의 검토 전: [refs/claims-ledger.md](refs/claims-ledger.md). README의 결과 문장(자체 결과 주장 53개)과 선행연구 판정(문헌 주장 28개)이 무엇에 기대는지 한 줄씩 적었다. 수치 점검 286개([refs/claims-checks.csv](refs/claims-checks.csv))를 `analysis/check_repo.py`가 결과 CSV와 소스에서 다시 계산해 README의 숫자와 맞춘다. 그 과정에서 README 문장 19개가 결과와 어긋나 고쳤다. 원인과 가설을 단정한 문장 5개는 점검하지 못해 '미검증'으로 두었다. 점검기의 시험은 점검기를 일부러 틀리게 고친 50곳을 모두 잡는다 |
-| 질문형 연구 질문과 사전 분석 계획(G5 초안) | 예정. 확인용 실행과 새 정책 구현은 계획을 동결(사람의 승인)하기 전에는 하지 않는다 |
+| 주장 대장과 문서-결과 수치 대조 | 초안 완료, 사람의 검토 전: [refs/claims-ledger.md](refs/claims-ledger.md). README의 결과 문장과 아래 G5 초안의 숫자 표(자체 결과 주장 57개)와 선행연구 판정(문헌 주장 28개)이 무엇에 기대는지 한 줄씩 적었다. 수치 점검 453개([refs/claims-checks.csv](refs/claims-checks.csv))를 `analysis/check_repo.py`가 결과 CSV와 소스에서 다시 계산해 README와 G5 초안의 숫자와 맞춘다. 그 과정에서 README 문장 19개가 결과와 어긋나 고쳤다. 원인과 가설을 단정한 문장 5개는 점검하지 못해 '미검증'으로 두었다. 점검기의 시험은 점검기를 일부러 틀리게 고친 50곳을 모두 잡는다 |
+| 질문형 연구 질문과 사전 분석 계획(G5 초안) | 초안 완료, 사람의 검토 전: [docs/02-questions-and-preanalysis.md](docs/02-questions-and-preanalysis.md). 질문을 질문형으로 다시 쓰고 검토할 명제 16개(RQ-A 7개, RQ-B 5개, RQ-C 4개), 반증 조건, 판정 규칙, 계획용 seed 수, 열린 결정 11개를 적었다. 명제는 탐색 seed를 본 뒤에 적었으므로 사전 예측이 아니라 '탐색에서 본 방향의 확인'이다. **G5는 통과하지 않았고 동결하지 않았다.** 확인용 실행과 새 정책 구현은 계획을 동결(사람의 승인)하기 전에는 하지 않는다 |
 
 단계별 기록과 막힌 점은 [docs/00-progress-log.md](docs/00-progress-log.md)에 있다.
 
 ## 실행
 
 ```bash
-python -m unittest discover -s tests   # 테스트 (약 10초)
+python -m unittest discover -s tests   # 테스트 (약 15초)
 python experiments.py                  # 전체 실험 (약 1~2분) -> results/
 python analysis/check_reproduce.py     # 저장된 결과를 처음부터 다시 만들어 비교 (약 1분, 저장소의 results/는 건드리지 않음)
 python analysis/bootstrap_ci.py        # 신뢰구간 -> results/validation/ci_summary.csv (약 30초)
@@ -34,6 +34,7 @@ python analysis/mutation_check.py      # 시험이 일부러 넣은 결함을 �
 python analysis/diag_f1.py             # 결함 F1의 빈도 -> results/validation/f1_negative_waits.csv (약 30초)
 python analysis/check_repo.py          # README와 docs의 숫자·표기를 결과 파일과 맞춰 보는 점검기 (1초 안팎, 파일은 읽기만 함)
 python analysis/mutation_check_checker.py   # 점검기의 시험이 점검기의 결함을 잡는지 확인 (약 1분)
+python analysis/plan_numbers.py        # G5 초안의 seed 수 산정표 -> results/validation/plan_seed_counts.csv (1초 미만, 시뮬레이션 없음)
 ```
 
 ## 구조
@@ -45,15 +46,16 @@ python analysis/mutation_check_checker.py   # 점검기의 시험이 점검기�
 | `mlfqsim/workload.py` | interactive / batch / mixed / bursty / starve workload 생성기 |
 | `experiments.py` | E1~E6 실험 + 그래프 |
 | `tests/` | 단위 시험. `test_sim.py`(기존), `test_invariants.py`(손계산 사례와 불변식), `test_analysis_tools.py`(분석 도구), `test_check_repo.py`(문서 점검기) |
-| `analysis/` | 신뢰구간(`bootstrap_ci.py`), 재현 점검(`check_reproduce.py`), 변이 점검(`mutation_check.py`), F1 빈도(`diag_f1.py`), 문서 점검기(`check_repo.py`), 점검기의 변이 점검(`mutation_check_checker.py`) |
+| `analysis/` | 신뢰구간(`bootstrap_ci.py`), 재현 점검(`check_reproduce.py`), 변이 점검(`mutation_check.py`), F1 빈도(`diag_f1.py`), 문서 점검기(`check_repo.py`), 점검기의 변이 점검(`mutation_check_checker.py`), G5 초안의 seed 수 산정(`plan_numbers.py`) |
 | `results/` | CSV, `summary.md`, PNG |
-| `results/validation/` | `analysis/` 도구의 결과 CSV(신뢰구간, 변이 점검 둘, F1 빈도) |
+| `results/validation/` | `analysis/` 도구의 결과 CSV(신뢰구간, 변이 점검 둘, F1 빈도, seed 수 산정표) |
 | `docs/00-progress-log.md` | 진행 기록(AI 초안) |
 | `docs/01-prior-art.md` | 선행연구 위치 잡기(G4, AI 초안, 조건부) |
+| `docs/02-questions-and-preanalysis.md` | 질문형 연구 질문과 사전 분석 계획(G5 초안, AI 초안, 동결 전) |
 | `docs/03-measurement-validation.md` | 측정 도구 검증(AI 초안) |
 | `refs/g4-search-log.md` | G4 검색·열람 기록(호출 코드 G4-001~074) |
 | `refs/claims-ledger.md` | 주장 대장(AI 초안). 자체 결과 주장(R행)과 문헌 주장(L행)을 나눠 적고 수준과 점검 번호를 단다 |
-| `refs/claims-checks.csv` | 수치 점검표. 각 행이 README의 문장 하나를 결과 CSV나 소스에서 다시 계산하는 방법 |
+| `refs/claims-checks.csv` | 수치 점검표. 각 행이 README나 `docs/02-questions-and-preanalysis.md`의 숫자나 문장 하나를 결과 CSV나 소스에서 다시 계산하는 방법 |
 
 ## 모델링한 정책
 

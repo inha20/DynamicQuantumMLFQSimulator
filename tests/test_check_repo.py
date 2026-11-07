@@ -334,8 +334,12 @@ class PathAndHygieneRules(RepoCopy):
             with self.text_edit("README.md", "python analysis/bootstrap_ci.py ", "python analysis/no_such_tool.py ", count=1):
                 self.assert_fails_with("경로", "실행 예에 적힌 스크립트가 없다 analysis/no_such_tool.py")
         with self.subTest("예정인 줄은 건너뜀"):
-            with self.text_edit("README.md", "| 질문형 연구 질문과 사전 분석 계획(G5 초안) | 예정.", "| 질문형 연구 질문과 사전 분석 계획(G5 초안) `docs/no_such_plan.md` | 예정."):
+            plan = "# 계획\n\n다음 문서는 `docs/no_such_plan.md`와 [계획](no_such_plan.md)이다(예정).\n"
+            with self.added_file("docs/zz_plan.md", plan.encode("utf-8")):
                 self.assert_clean("경로")
+            with self.added_file("docs/zz_plan.md", plan.replace("(예정)", "").encode("utf-8")):    # 예정이 없으면 같은 줄이 걸린다
+                self.assert_fails_with("경로", "경로가 없다 docs/no_such_plan.md")
+                self.assert_fails_with("경로", "링크가 가리키는 파일이 없다 no_such_plan.md")
         self.assert_clean("경로")
 
     def test_hygiene_finds_private_strings_and_pdfs(self):

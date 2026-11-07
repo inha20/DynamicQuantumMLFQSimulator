@@ -1,0 +1,14 @@
+cid,metric,measure,mean_a,sd,n_a,n_b,n_c,k,h100
+E2-mixed-load,avg_wait,rel,1797.89,7.11,10,34,197,11,2.02
+E2-mixed-feedback,avg_wait,rel,1797.89,4.24,5,14,72,11,1.20
+E2-mixed-hybrid,avg_wait,rel,1797.89,17.33,49,187,1156,11,4.92
+E2-mixed-load,int_lat_p95,abs,3.8,2.25,4,7,22,11,0.64
+E2-mixed-feedback,int_lat_p95,abs,3.8,1.29,3,4,9,11,0.37
+E2-mixed-hybrid,int_lat_p95,abs,3.8,68.73,1137,4540,18152,11,19.50
+E6-00,avg_wait,rel,1946.46,2.80,4,7,33,6,0.74
+E6-01,avg_wait,rel,3192.36,4.45,6,15,79,90,1.54
+E6-03,avg_wait,rel,4028.16,4.88,6,17,94,6,1.29
+E6-04,avg_wait,rel,12588.9,2.88,4,8,34,90,0.99
+E6-00,int_lat_p95,abs,0.7,4.90,8,26,95,6,1.29
+E6-01,int_lat_p95,abs,26.1,9.83,26,95,374,90,3.39
+E6-04,int_lat_p95,abs,387.8,39.37,375,1491,5957,90,13.59

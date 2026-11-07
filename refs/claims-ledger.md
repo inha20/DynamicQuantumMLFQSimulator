@@ -7,12 +7,12 @@ AI(Claude)가 작성한 초안이며 사람의 검토 전이다. 2026-11-08.
 ## 0. 읽는 법
 
 - **R행(자체 결과)**: 이 저장소의 결과 파일과 코드에 대한 주장이다. 수준은 V(이 저장소의 코드로 다시 계산한 값, 모델과 범위를 함께 적음) 또는 X(점검하지 못함)다. V는 증명이 아니다.
-  - 점검 열의 번호는 `refs/claims-checks.csv`의 점검이다. `analysis/check_repo.py`가 결과 CSV와 소스에서 값을 다시 계산해 README에 적힌 숫자와 맞춘다.
+  - 점검 열의 번호는 `refs/claims-checks.csv`의 점검이다. `analysis/check_repo.py`가 결과 CSV와 소스에서 값을 다시 계산해 README와 `docs/02-questions-and-preanalysis.md`에 적힌 숫자와 맞춘다.
   - 상태 '일치'는 점검이 문장의 숫자와 방향을 모두 확인했다는 뜻이다. '고침'은 2026-11-08에 이 점검에 맞춰 README 문장을 바꿨다는 뜻이고 메모에 고치기 전 문장을 적었다. '해석'은 숫자는 점검했고 "거의", "크게", "지배적" 같은 표현에는 메모의 기준을 적용했다는 뜻이다. '미검증'은 수준 X이고 점검이 없다(원인과 가설 문장).
 - **L행(문헌 주장)**: 문서가 문헌에서 읽었다고 적은 것이다. 문헌 ID는 `docs/01-prior-art.md` §6, 호출 코드는 `refs/g4-search-log.md`를 따른다. 수준은 인용한 문헌 중 가장 약한 수준보다 강하게 적지 않는다(더 약하게 적는 것은 된다). C 이하는 전제로 쓰지 않고 단서로만 쓴다. B 수준의 서지·초록도 판정의 보조였으므로 단서로 적었다. 열람 도구가 본문을 요약해 돌려주었으므로 A−의 수치는 원문으로 확인하기 전에는 옮기지 않는다.
 - 하위 주장 열은 `docs/01-prior-art.md`의 A1~A8, B1~B9, C1~C3이다. 판정에 쓰지 않은 문헌은 '없음'으로 적고 단서로 둔다.
 
-범위는 README 본문(핵심 결과, 한계, 현재 상태 표의 숫자와 정책·비용 서술)이다. `docs/analysis.md`(원본 노트)와 검증 문서의 표는 범위 밖이다. 원본 노트에는 아래 '고침' 행과 같은 어긋남이 남아 있어 맨 위에 안내만 더했다.
+범위는 README 본문(핵심 결과, 한계, 현재 상태 표의 숫자와 정책·비용 서술)과 `docs/02-questions-and-preanalysis.md`의 숫자 표 둘(§4.5, §8)과 구성·개수 문장(R54~R57)이다. `docs/analysis.md`(원본 노트)와 검증 문서의 표는 범위 밖이다. 원본 노트에는 아래 '고침' 행과 같은 어긋남이 남아 있어 맨 위에 안내만 더했다.
 
 ## 1. 자체 결과 주장(R행)
 
@@ -69,8 +69,12 @@ AI(Claude)가 작성한 초안이며 사람의 검토 전이다. 2026-11-08.
 | R49 | 비용 가정: context switch 1틱, 다른 CPU에서 실행하면 작업량 +3틱, global 큐는 dispatch당 (N-1)·0.25틱의 선형 락 비용 | README 모델링한 정책, 한계 | `mlfqsim/sim.py` | C-CODE-06..09, C-CODE-12 | 일치 | V | 락 비용은 실제 경합과 무관하게 매 dispatch에 매긴다(검증 문서 H10). |
 | R50 | seed 10개 평균으로 6개 실험을 돌렸고 `max_wait`는 모든 task 중 최대 대기다 | README 첫머리, E1 | `experiments.py`, `mlfqsim/sim.py` | C-CODE-13..15 | 일치 | V | |
 | R51 | hybrid의 악화는 정책 파라미터와 강등 규칙의 결합 결과다 | README 한계 | 같음 | 없음 | 미검증 | X | README는 이미 "일반 결론이 아닙니다"라고 적었다. 파라미터는 튜닝하지 않았고 결합 효과를 가르는 실험은 하지 않았다. |
-| R52 | 주장 대장의 규모: 자체 결과 주장 53개, 문헌 주장 28개, 수치 점검 286개, README 문장 19개를 고쳤고 5개는 점검하지 못했다 | README 현재 상태 | `refs/claims-ledger.md`, `refs/claims-checks.csv` | C-LED-01..05 | 일치 | V | 이 문서와 점검표의 행을 센다. 행을 더하면 README의 숫자도 고쳐야 점검이 통과한다. 이 행과 R53이 53개에 들어 있다. |
+| R52 | 주장 대장의 규모: 자체 결과 주장 57개, 문헌 주장 28개, 수치 점검 453개, README 문장 19개를 고쳤고 5개는 점검하지 못했다 | README 현재 상태 | `refs/claims-ledger.md`, `refs/claims-checks.csv` | C-LED-01..05 | 일치 | V | 이 문서와 점검표의 행을 센다. 행을 더하면 README의 숫자도 고쳐야 점검이 통과한다. 이 행과 R53~R57이 57개에 들어 있다. 고친 19개와 점검하지 못한 5개는 README 문장에 대한 것이다. |
 | R53 | 점검기의 시험은 점검기를 일부러 틀리게 고친 50곳을 모두 잡는다 | README 현재 상태 | `results/validation/mutation_check_checker.csv` | C-ST-04..05 | 일치 | V | 점검기 변이 점검 도구의 결과 파일을 센다. 다시 돌리는 것은 `analysis/mutation_check_checker.py`다. 사람이 고른 50곳이라 모든 결함을 잡는다는 뜻이 아니다(검증 문서 §7.1). |
+| R54 | G5 초안의 탐색 seed 값 표: 비교 18행의 기준 평균, 비교 평균, 변화, 95% 구간 | `docs/02-questions-and-preanalysis.md` §4.5 | 기본 모델, 1코어(PA 행)와 8코어 mixed(PB 행), seed 0–9, 쌍체 백분위 부트스트랩 구간(보정 없음) | C-PL-01..90 | 일치 | V | 탐색 seed의 값이고 명제의 사전 예측이 아니다. 표시한 자릿수에 맞춘 허용 오차로 `results/validation/ci_summary.csv`와 맞춘다. 표의 '(참고)' 두 행은 명제에 없다. |
+| R55 | G5 초안의 seed 수 산정표: 비교 13행의 기준 평균, SD, 가족 크기, seed 100개의 반폭, 필요한 seed 수 | `docs/02-questions-and-preanalysis.md` §8 | `analysis/plan_numbers.py`가 `ci_summary.csv`의 t 구간에서 계산한 `results/validation/plan_seed_counts.csv`(새 시뮬레이션 없음), 정규 근사 | C-PN-01..65 | 일치 | V | SD는 seed 10개에서 구한 값이라 불확실하고 비교를 고른 뒤에 본 값이다. 계획용이다. |
+| R56 | G5 초안의 개수: 검토할 명제 16개(RQ-A 7개, RQ-B 5개, RQ-C 4개), 열린 결정 11개 | `docs/02-questions-and-preanalysis.md` §0 | 문서의 표 행 | C-G5-01..05 | 일치 | V | 표의 행을 센다. 명제나 결정을 더하거나 빼면 §0의 문장과 이 점검의 숫자를 함께 고친다. |
+| R57 | G5 초안의 확인용 구성이 탐색 실험 코드와 같다: RQ-A는 E2와 E3의 구성과 `per_cpu=10`, RQ-B는 E6의 구성과 기본 `per_cpu=12`, 끝나지 않은 실행은 오류, 기본 설정값 | `docs/02-questions-and-preanalysis.md` §5 | `experiments.py`, `mlfqsim/sim.py` | C-G5-06..12 | 일치 | V | 코드에서 해당 줄이 있는지만 확인한다. 값이 뜻하는 바는 보지 않는다. |
 
 ## 2. 문헌 주장(L행)
 
@@ -114,7 +118,7 @@ python -I -B -m unittest discover -s tests -p "test_check_repo.py"    # 점검�
 python -I -B analysis/mutation_check_checker.py                       # 그 시험이 점검기의 결함을 잡는지(변이 50개, 약 1분)
 ```
 
-- 수치: `refs/claims-checks.csv`의 점검 하나하나를 결과 CSV와 소스에 대해 계산한다. 점검의 snippet은 README에 실제로 있어야 하고 숫자를 옮겨 적은 점검의 숫자는 snippet 안에 있어야 한다.
+- 수치: `refs/claims-checks.csv`의 점검 하나하나를 결과 CSV와 소스에 대해 계산한다. 점검의 snippet은 그 점검의 `doc` 열 문서(README나 `docs/02-questions-and-preanalysis.md`)에 실제로 있어야 하고 숫자를 옮겨 적은 점검의 숫자는 snippet 안에 있어야 한다.
 - 대장: 이 문서의 형식, 점검 번호가 점검표에 있는지, 점검표의 모든 번호가 어느 행에서 쓰였는지, 문헌 ID와 호출 코드가 `docs/01-prior-art.md`와 검색 기록에 있는지, 수준 규칙을 지켰는지.
 - 검색기록, 경로, 위생: 호출 번호가 빠짐없이 이어지는지와 문서의 횟수, 판정 집계, 링크, 이메일·개인 경로·비밀값 모양의 문자열·PDF가 없는지.
 

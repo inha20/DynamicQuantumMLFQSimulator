@@ -12,6 +12,8 @@ sys.path.insert(0, str(ROOT / "analysis"))
 import bootstrap_ci as bc  # noqa: E402
 import check_reproduce as cr  # noqa: E402
 import mutation_check as mc  # noqa: E402
+import mutation_check_checker as mcc  # noqa: E402
+import plan_numbers as pn  # noqa: E402
 
 
 class Bootstrap(unittest.TestCase):
@@ -144,6 +146,88 @@ class MutationList(unittest.TestCase):
             self.assertEqual(sorted(p.name for p in (Path(td) / "tests").iterdir()), sorted(mc.SIM_TESTS))
             self.assertTrue((Path(td) / "mlfqsim" / "sim.py").exists())
             self.assertFalse((Path(td) / "analysis").exists())
+
+
+class CheckerMutationList(unittest.TestCase):
+    def test_every_mutant_applies_exactly_once_to_the_real_checker(self):
+        # 점검기 소스가 바뀌어 변이의 원문이 사라지거나 둘 이상 나오면 점검기 변이 점검이 헛돈다. 그것을 여기서 먼저 잡는다.
+        # 이 시험은 점검기 시험(tests/test_check_repo.py) 안에 두지 않는다. 변이를 넣은 사본에서는 원문이 바뀌어 이 시험이 항상 실패한다.
+        text = (ROOT / mcc.SRC).read_text(encoding="utf-8")
+        ids = [m[0] for m in mcc.MUTANTS]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(len(ids), 50)
+        for mid, old, new, desc in mcc.MUTANTS:
+            self.assertEqual(text.count(old), 1, f"{mid}: {desc}")
+            self.assertNotEqual(old, new, mid)
+
+    def test_copied_tree_has_the_checker_and_its_tests_only_as_needed(self):
+        src = (ROOT / "tests" / mcc.TEST_FILE).read_text(encoding="utf-8")
+        for mod in ("mutation_check_checker", "plan_numbers", "mutation_check", "bootstrap_ci", "check_reproduce"):
+            self.assertNotIn(f"import {mod}", src)
+        with tempfile.TemporaryDirectory() as td:
+            mcc.make_tree(Path(td))
+            self.assertTrue((Path(td) / mcc.SRC).exists())
+            self.assertTrue((Path(td) / "tests" / mcc.TEST_FILE).exists())
+            self.assertFalse((Path(td) / ".git").exists())
+
+
+class PlanNumbers(unittest.TestCase):
+    ROW = {"model": "default", "cid": "X-1", "metric": "avg_wait", "n": "10", "paired": "1", "mean_a": "100",
+           "t_lo": "-7.1531", "t_hi": "7.1531"}
+
+    def test_seeds_needed_formula(self):
+        self.assertEqual(pn.seeds_needed(10.0, 2.5), 64)      # (1.96 * 10 / 2.5)^2 = 61.47 -> 62, 보정 +2
+        self.assertEqual(pn.seeds_needed(2.0, 1.0), 18)       # 3.92^2 = 15.37 -> 16, +2
+
+    def test_sd_is_backed_out_of_the_t_interval(self):
+        # 차이의 표준편차가 10이면 t 구간 반폭은 2.262 * 10 / sqrt(10) = 7.1531이다.
+        rel = pn.compute([self.ROW], [("X-1", "avg_wait", "rel")])[0]
+        self.assertEqual(rel["sd"], "10.00")                 # 기준 평균 100에 대한 %
+        self.assertEqual((rel["n_a"], rel["n_b"], rel["n_c"]), (18, 64, 387))       # 반폭 5, 2.5, 1 (%)
+        absolute = pn.compute([self.ROW], [("X-1", "avg_wait", "abs")])[0]
+        self.assertEqual(absolute["sd"], "10.00")            # 틱
+        self.assertEqual((absolute["n_a"], absolute["n_b"], absolute["n_c"]), (27, 99, 387))   # 반폭 4, 2, 1 (틱)
+
+    def test_family_level_half_width(self):
+        self.assertAlmostEqual(pn.family_z(1), 1.959964, places=5)
+        self.assertAlmostEqual(pn.family_z(11), 2.837597, places=5)      # 1 - 0.05 / 22
+        self.assertAlmostEqual(pn.family_z(90), 3.452433, places=5)      # 1 - 0.05 / 180
+        zs = [pn.family_z(k) for k in (1, 4, 6, 11, 90)]
+        self.assertEqual(zs, sorted(zs))                                  # 가족이 클수록 구간이 넓다
+        self.assertAlmostEqual(pn.half_width(10.0, 100, 1), 1.959964, places=5)
+        self.assertAlmostEqual(pn.half_width(10.0, 25, 1), 3.919928, places=5)    # seed가 4분의 1이면 반폭은 두 배
+        self.assertAlmostEqual(pn.half_width(8.0, 100, 11), 2.270078, places=5)   # 2.837597 * 8 / 10
+        for bad in (0, -3, 2.0):
+            with self.assertRaises(ValueError):
+                pn.family_z(bad)
+        with self.assertRaises(ValueError):
+            pn.half_width(10.0, 1, 1)
+
+    def test_compute_reports_the_family_and_its_half_width(self):
+        default = pn.compute([self.ROW], [("X-1", "avg_wait", "rel")])[0]      # k를 안 쓰면 1(보정 없음)
+        self.assertEqual((default["k"], default["h100"]), (1, "1.96"))         # sd 10, seed 100개
+        family = pn.compute([self.ROW], [("X-1", "avg_wait", "rel", 11)])[0]
+        self.assertEqual((family["k"], family["h100"]), (11, "2.84"))
+        self.assertEqual((family["n_a"], family["n_b"], family["n_c"]), (18, 64, 387))   # seed 수 열은 k와 무관
+        self.assertEqual(pn.COLUMNS[-2:], ["k", "h100"])
+
+    def test_unusable_inputs_are_errors(self):
+        with self.assertRaises(ValueError):
+            pn.compute([self.ROW], [("X-2", "avg_wait", "rel")])                    # 없는 비교
+        with self.assertRaises(ValueError):
+            pn.compute([dict(self.ROW, n="20")], [("X-1", "avg_wait", "rel")])      # seed 10개가 아님
+        with self.assertRaises(ValueError):
+            pn.compute([dict(self.ROW, mean_a="0")], [("X-1", "avg_wait", "rel")])  # 기준 평균 0
+        with self.assertRaises(ValueError):
+            pn.compute([dict(self.ROW, model="defer_requeue")], [("X-1", "avg_wait", "rel")])
+
+    def test_saved_table_matches_a_fresh_computation(self):
+        import csv
+        with pn.SRC.open(encoding="utf-8", newline="") as f:
+            fresh = pn.compute(list(csv.DictReader(f)))
+        with pn.OUT.open(encoding="utf-8", newline="") as f:
+            saved = list(csv.DictReader(f))
+        self.assertEqual([{k: str(v) for k, v in r.items()} for r in fresh], saved)
 
 
 if __name__ == "__main__":
